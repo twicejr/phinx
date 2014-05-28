@@ -618,6 +618,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
                 $this->getForeignKeySqlDefinition($foreignKey)
             )
         );
+        
+        //@todo: add triggers for myisam tables, if it is myisam table.
+        
         $this->endCommandTimer();
     }
 
@@ -632,6 +635,9 @@ class MysqlAdapter extends PdoAdapter implements AdapterInterface
         }
         
         $this->writeCommand('dropForeignKey', array($tableName, $columns));
+        
+        
+        //@todo: remove triggers for myisam tables, if it is myisam table.
         
         if ($constraint) {
             $this->execute(
